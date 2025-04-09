@@ -16,12 +16,14 @@ function calculateGPA(courses) {
 	courses.forEach((course) => {
 		const grade = course.grade.toUpperCase(); // Ensure grade is uppercase
 		const unit = course.unit;
+		console.log(unit);
 		const point = gradeToPoint[grade];
-
+		console.log(unit, point);
 		if (point !== undefined) {
-			totalPoints += point * unit;
-			totalUnits += unit;
+			totalPoints += Number(point * unit);
+			totalUnits += Number(unit);
 		}
+		console.log(totalPoints, totalUnits);
 	});
 
 	return totalUnits === 0 ? 0 : (totalPoints / totalUnits).toFixed(2);
