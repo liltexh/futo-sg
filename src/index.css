@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@font-face {
+	font-family: "roboto";
+	src: url("./assets/fonts/Roboto-VariableFont_wdth\,wght.ttf");
+}
+
+body {
+	font-family: "roboto", Arial, Helvetica, sans-serif;
+	background-color: #f7f7f7;
+	padding: 4px 16px 40px 16px;
+}
+
+.excess_z {
+	z-index: 99999999999999999;
+}

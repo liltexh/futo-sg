@@ -1,0 +1,52 @@
+import React from "react";
+import { crossH } from "../tools/image";
+import CrossShadow from "../components/CrossShadow";
+import { NavLink } from "react-router-dom";
+
+export default function Home() {
+	return (
+		<div className="flex flex-col lg:flex-row justify-evenly h-dvh">
+			<section className="lg:flex-1/2 flex flex-col gap-10 justify-center items-center lg:mr-10">
+				<div className="relative shadow-xl w-fit rounded-md justify-self-start self-start">
+					<CrossShadow>
+						<div className="flex bg-white w-full h-10 rounded-md">
+							<button>icon</button>
+							<input
+								type="text"
+								placeholder="Search"
+							/>
+						</div>
+					</CrossShadow>
+				</div>
+
+				<div className="w-full min-h-44 bg-gray-500 aspect-video rounded-md"></div>
+			</section>
+			<section className="flex justify-center items-center lg:flex-1/2">
+				<div className="grid grid-cols-2 md:grid-cols-1 gap-4 lg:grid-cols-3 w-full  p-2">
+					{Features.map((feature, idx) => {
+						return (
+							<div
+								key={idx}
+								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative  md:text-xl lg:text-2xl font-semibold bg-white border-2 border-gray-700 ${
+									idx == 4 && "col-span-2"
+								}`}
+							>
+								<CrossShadow>
+									<NavLink to={feature.link}>{feature.name}</NavLink>
+								</CrossShadow>
+							</div>
+						);
+					})}
+				</div>
+			</section>
+		</div>
+	);
+}
+
+const Features = [
+	{ name: "Lecture Note", link: "#", icon: "" },
+	{ name: "Chat Room", link: "#", icon: "" },
+	{ name: "CGPA Planner", link: "edu/cgpa-planner", icon: "" },
+	{ name: "E-Voting", link: "#", icon: "" },
+	{ name: "Information And Annoucement", link: "#", icon: "" },
+];
