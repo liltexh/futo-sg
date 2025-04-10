@@ -15,11 +15,17 @@ export default function CgpaPlaner() {
 			</section>
 			<section className="flex gap-10 flex-col lg:flex-row mt-auto">
 				<div className="flex lg:flex-col lg:flex-1/4 gap-4">
-					<div className="flex-1 bg-red-500 min-w-[20%] h-[24vh]"></div>
-					<div className="flex-1 bg-gray-500 min-w-[20%]  h-[24vh]"></div>
+					<div className="flex-1 bg-red-500 min-w-[20%] h-[24vh]">
+						time table
+					</div>
+					<div className="flex-1 bg-gray-500 min-w-[20%]  h-[24vh]">
+						palnner and progress chart
+					</div>
 				</div>
 				<div className="flex-3/4 flex justify-center items-center">
-					<div className="w-full bg-gray-500  aspect-video rounded-md"></div>
+					<div className="w-full bg-gray-500  aspect-video rounded-md">
+						note pad
+					</div>
 				</div>
 			</section>
 		</div>

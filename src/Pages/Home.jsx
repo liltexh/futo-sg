@@ -27,7 +27,7 @@ export default function Home() {
 						return (
 							<div
 								key={idx}
-								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative  md:text-xl lg:text-2xl font-semibold bg-white border-2 border-gray-700 ${
+								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative  md:text-xl lg:text-2xl font-semibold bg-white border-2 border-gray-700 min-w-36 ${
 									idx == 4 && "col-span-2"
 								}`}
 							>

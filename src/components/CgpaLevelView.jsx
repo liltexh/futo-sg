@@ -5,7 +5,7 @@ import { calculateGPA } from "../tools/cgpa";
 import { toUpper } from "../tools/formatString";
 import Button02 from "./Button02";
 
-export default function CgpaLevelView({ result, viewingResult }) {
+export default function CgpaLevelView({ result, setViewingResult }) {
 	const [gpaResults, setGpaResult] = useAddToStorage("gpas", []);
 	const [gpaTotal, setGpaTotal] = useState();
 	const [gpaRes, setGpaRes] = useState({
@@ -43,7 +43,17 @@ export default function CgpaLevelView({ result, viewingResult }) {
 		<section className="fixed inset-0 backdrop-blur-2xl flex justify-center items-center h-dvh z-50">
 			<div className="flex flex-col justify-evenly bg-gray-50 w-[80%] lg:w-[30%] rounded-xl p-4 z-0 border-2 border-gray-500 gap-4">
 				<div className="flex flex-col justify-center gap-4">
-					<h3 className="text-3xl font-semibold">{result.level}</h3>
+					<div className="flex justify-between items-center">
+						<h3 className="text-3xl font-semibold">{result.level}</h3>
+						<button
+							className="border-2 rounded-full w-4 h-4 flex justify-center text-center bg-red-500 mr-1"
+							onClick={() => {
+								setViewingResult(false);
+							}}
+						>
+							{" "}
+						</button>
+					</div>
 					<div className="bg-gray-500 px-1 py-1 rounded-md flex justify-between text-gray-50 gap-2">
 						<button className="bg-gray-300 py-1 rounded-md shadow-xl whitespace-nowrap flex-1">
 							First Semester
