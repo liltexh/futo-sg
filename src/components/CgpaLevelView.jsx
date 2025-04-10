@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Button01 from "./Button01";
 import useAddToStorage from "../hooks/useAddToStorage/useAddToStorage";
 import { generateId } from "../tools/generateNum";
 import { calculateGPA } from "../tools/cgpa";
 import { toUpper } from "../tools/formatString";
+import Button02 from "./Button02";
 
 export default function CgpaLevelView({ result, viewingResult }) {
 	const [gpaResults, setGpaResult] = useAddToStorage("gpas", []);
@@ -41,10 +41,10 @@ export default function CgpaLevelView({ result, viewingResult }) {
 	}, [gpaResults]);
 	return (
 		<section className="fixed inset-0 backdrop-blur-2xl flex justify-center items-center h-dvh z-50">
-			<div className="flex flex-col justify-evenly bg-gray-50 w-[80%]  rounded-xl p-4 z-0 border-2 border-gray-500 gap-4">
+			<div className="flex flex-col justify-evenly bg-gray-50 w-[80%] lg:w-[30%] rounded-xl p-4 z-0 border-2 border-gray-500 gap-4">
 				<div className="flex flex-col justify-center gap-4">
 					<h3 className="text-3xl font-semibold">{result.level}</h3>
-					<div className="bg-gray-500 px-1 md:px-4 py-1 rounded-md flex justify-between text-gray-50 gap-2">
+					<div className="bg-gray-500 px-1 py-1 rounded-md flex justify-between text-gray-50 gap-2">
 						<button className="bg-gray-300 py-1 rounded-md shadow-xl whitespace-nowrap flex-1">
 							First Semester
 						</button>
@@ -68,14 +68,16 @@ export default function CgpaLevelView({ result, viewingResult }) {
 							return (
 								<div
 									key={idx}
-									className={`flex gap-4 items-center p-1 w-full px-6 justify-between ${
+									className={`grid grid-cols-10 items-center p-1 w-full px-6 justify-between ${
 										idx % 2 == 0 ? "bg-gray-500 text-white" : "bg-white"
 									}`}
 								>
-									<span>{res.course}</span>
-									<span>{res.unit}</span>
-									<span>{toUpper(res.grade)}</span>
-									<button className="">del</button>
+									<span className="col-span-5">{res.course}</span>
+									<span className="col-span-2">{res.unit}</span>
+									<span className="col-span-2">{toUpper(res.grade)}</span>
+									<button className="border-2 rounded-full flex justify-center items-center w-5 h-5 font-bold">
+										x
+									</button>
 								</div>
 							);
 						})}
@@ -109,12 +111,10 @@ export default function CgpaLevelView({ result, viewingResult }) {
 						/>
 					</div>
 					<div className="flex justify-center items-center">
-						<button
-							className="bg-gray-500 w-full text-gray-50 py-2 rounded-md shadow-md"
-							onClick={addResult}
-						>
-							Add
-						</button>
+						<Button02
+							texts="Add"
+							doclick={addResult}
+						/>
 					</div>
 				</div>
 			</div>

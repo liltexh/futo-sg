@@ -5,6 +5,7 @@ import useAddToStorage from "../hooks/useAddToStorage/useAddToStorage";
 import { empty } from "../tools/image";
 import CgpaLevelView from "./CgpaLevelView";
 import { generateId } from "../tools/generateNum";
+import Button02 from "./Button02";
 
 export default function CgpaCalculator() {
 	const [Clevel, setCLevel] = useState(false);
@@ -54,12 +55,12 @@ export default function CgpaCalculator() {
 							/>
 						)}
 
-						<div className="relative w-full h-full flex flex-col z-10">
+						<div className="relative w-full h-full flex flex-col z-10 gap-4 overflow-y-auto">
 							{userLevel.map((stuLevel, idx) => {
 								return (
 									<div key={idx}>
-										<div className="flex gap-5">
-											{stuLevel.level}
+										<div className="h-14 flex items-center justify-end p-2 relative bg-white lg:w-[90%] shadow-sm gap-4">
+											<span className="mr-auto">{stuLevel.level}</span>
 											<button
 												onClick={() => {
 													viewCgpaResult(stuLevel.id);
@@ -75,14 +76,13 @@ export default function CgpaCalculator() {
 						</div>
 					</div>
 				</section>
-				<section className="flex justify-center items-center">
-					<button
-						onClick={() => {
+				<section className="flex justify-center items-center px-6">
+					<Button02
+						texts="Add Level"
+						doclick={() => {
 							ChooseLevel();
 						}}
-					>
-						plus btn
-					</button>
+					/>
 				</section>
 			</div>
 		</>

@@ -5,6 +5,7 @@ function generateId() {
 		number += num;
 	}
 	number = Number(number);
+	console.log("number generated");
 	return number;
 }
 
