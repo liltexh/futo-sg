@@ -9,20 +9,14 @@ import Button02 from "./Button02";
 
 export default function CgpaCalculator() {
 	const [Clevel, setCLevel] = useState(false);
-	const [viewingResult, setViewingResult] = useState(false);
-	const [cgpaResult, setCgpaResult] = useState(null);
 	const [userLevel, addUserLevel] = useAddToStorage("level", []);
+	const [viewingResult, setViewingResult] = useState(false);
+	const [currentResultId, setCurrentResultId] = useState(null);
 	const ChooseLevel = () => {
 		setCLevel(true);
 	};
-	const viewCgpaResult = (Id) => {
-		let result = null;
-		for (const level of userLevel) {
-			if (Id == level.id) {
-				result = level;
-			}
-		}
-		setCgpaResult(result);
+	const viewGpaResult = (Id) => {
+		setCurrentResultId(Id);
 		setViewingResult(true);
 	};
 	return (
@@ -35,7 +29,7 @@ export default function CgpaCalculator() {
 			)}
 			{viewingResult && (
 				<CgpaLevelView
-					result={cgpaResult}
+					resultId={currentResultId}
 					setViewingResult={setViewingResult}
 				/>
 			)}
@@ -65,7 +59,7 @@ export default function CgpaCalculator() {
 											<span className="mr-auto">{stuLevel.level}</span>
 											<button
 												onClick={() => {
-													viewCgpaResult(stuLevel.id);
+													viewGpaResult(stuLevel.id);
 												}}
 											>
 												view
@@ -101,6 +95,7 @@ function ChooseLevelContainer({ setCLevel, addUserLevel }) {
 		const userInfo = {
 			id: generateId(),
 			level: levelRef.current.value,
+			gpas: [],
 		};
 		addUserLevel((p) => [...p, userInfo]);
 		setCLevel(false);

@@ -1,50 +1,91 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useAddToStorage from "../hooks/useAddToStorage/useAddToStorage";
 import { generateId } from "../tools/generateNum";
 import { calculateGPA } from "../tools/cgpa";
 import { toUpper } from "../tools/formatString";
 import Button02 from "./Button02";
 
-export default function CgpaLevelView({ result, setViewingResult }) {
-	const [gpaResults, setGpaResult] = useAddToStorage("gpas", []);
-	const [gpaTotal, setGpaTotal] = useState();
+export default function CgpaLevelView({ resultId, setViewingResult }) {
+	const [specificLevel, setSpecificLevel] = useState(null);
+	const [userLevel, addUserLevel] = useAddToStorage("level", []);
 	const [gpaRes, setGpaRes] = useState({
 		id: "",
 		course: "",
 		unit: "",
 		grade: "",
+		semester: "",
 	});
+	const [totalGpa, setTotalGpa] = useState("0.00");
+	const [semester, setSemester] = useState("first");
+
 	const addResult = () => {
+		const { gpas } = specificLevel;
+
 		const tempres = {
-			id: generateId(),
 			...gpaRes,
+			id: generateId(),
+			semester: semester,
 		};
-		setGpaResult((p) => [...p, tempres]);
+
+		const newGpas = [...gpas, tempres];
+		specificLevel.gpas = newGpas;
+
+		editFromStorage("level", specificLevel, []);
+		// addUserLevel((p) => [...p, specificLevel]);
 		setGpaRes({
 			id: "",
 			course: "",
 			unit: "",
 			grade: "",
+			semester: "",
 		});
 	};
+
 	const editRes = (e) => {
 		const { name, value } = e.target;
 		setGpaRes((p) => ({ ...p, [name]: value }));
 	};
+	const changeSemester = (s) => {
+		setSemester(s);
+	};
+	const editFromStorage = (key, newData, fallback) => {
+		let AllLevels = localStorage.getItem(key)
+			? JSON.parse(localStorage.getItem(key))
+			: fallback;
+		const index = AllLevels.findIndex((obj) => obj.id === newData.id);
+		if (index !== -1) {
+			AllLevels[index] = newData;
+		}
+		console.log(AllLevels);
+		localStorage.setItem(key, JSON.stringify(AllLevels));
+	};
 
 	useEffect(() => {
-		const getResultTotal = () => {
-			const total = calculateGPA(gpaResults);
-			setGpaTotal(total);
+		const SGpaResult = () => {
+			for (const level of userLevel) {
+				if (resultId == level.id) {
+					setSpecificLevel(level);
+					const GpaTotal = calculateGPA(level.gpas);
+					setTotalGpa(GpaTotal);
+					console.log(specificLevel);
+				}
+			}
+
+			// setTotalGpa(totalGpa);
+			setViewingResult(true);
 		};
-		return getResultTotal();
-	}, [gpaResults]);
+
+		return SGpaResult();
+	}, [gpaRes]);
+
 	return (
 		<section className="fixed inset-0 backdrop-blur-2xl flex justify-center items-center h-dvh z-50">
 			<div className="flex flex-col justify-evenly bg-gray-50 w-[80%] lg:w-[30%] rounded-xl p-4 z-0 border-2 border-gray-500 gap-4">
 				<div className="flex flex-col justify-center gap-4">
 					<div className="flex justify-between items-center">
-						<h3 className="text-3xl font-semibold">{result.level}</h3>
+						<h3 className="text-3xl font-semibold">
+							{specificLevel?.level} level
+						</h3>
 						<button
 							className="border-2 rounded-full w-4 h-4 flex justify-center text-center bg-red-500 mr-1"
 							onClick={() => {
@@ -55,16 +96,30 @@ export default function CgpaLevelView({ result, setViewingResult }) {
 						</button>
 					</div>
 					<div className="bg-gray-500 px-1 py-1 rounded-md flex justify-between text-gray-50 gap-2">
-						<button className="bg-gray-300 py-1 rounded-md shadow-xl whitespace-nowrap flex-1">
+						<button
+							className={` py-1 rounded-md shadow-xl whitespace-nowrap flex-1 ${
+								semester == "first" && "bg-gray-300"
+							}`}
+							onClick={() => {
+								changeSemester("first");
+							}}
+						>
 							First Semester
 						</button>
-						<button className="py-1 rounded-md whitespace-nowrap flex-1">
+						<button
+							className={` py-1 rounded-md shadow-xl whitespace-nowrap flex-1 ${
+								semester == "second" && "bg-gray-300"
+							}`}
+							onClick={() => {
+								changeSemester("second");
+							}}
+						>
 							Second Semester
 						</button>
 					</div>
 				</div>
 				<div className="flex flex-col justify-center items-center gap-2">
-					<h4 className="text-5xl font-bold">{gpaTotal}</h4>
+					<h4 className="text-5xl font-bold">{totalGpa}</h4>
 					<p className="font-semibold text-gray-600">
 						Total GPA For First Semester
 					</p>
@@ -74,7 +129,7 @@ export default function CgpaLevelView({ result, setViewingResult }) {
 						<h4 className="text-2xl font-semibold text-gray-600">Results</h4>
 					</div>
 					<div className="flex flex-col shadow-xl rounded-md overflow-y-scroll h-[24vh]">
-						{gpaResults.map((res, idx) => {
+						{specificLevel?.gpas.map((res, idx) => {
 							return (
 								<div
 									key={idx}

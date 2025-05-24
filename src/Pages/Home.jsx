@@ -19,7 +19,7 @@ export default function Home() {
 					</CrossShadow>
 				</div>
 
-				<div className="w-full min-h-44 bg-gray-500 aspect-video rounded-md"></div>
+				<div className="w-full min-h-44 bg-green-400 aspect-video rounded-md"></div>
 			</section>
 			<section className="flex justify-center items-center lg:flex-1/2">
 				<div className="grid grid-cols-2 md:grid-cols-1 gap-4 lg:grid-cols-3 w-full  p-2">
@@ -27,13 +27,13 @@ export default function Home() {
 						return (
 							<div
 								key={idx}
-								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative  md:text-xl lg:text-2xl font-semibold bg-white border-2 border-gray-700 min-w-36 ${
+								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative text-white  text-xl lg:text-2xl font-semibold border-2 border-gray-700 min-w-36 bg-white ${
 									idx == 4 && "col-span-2"
 								}`}
 							>
-								<CrossShadow>
+								<div className="flex justify-center items-center  bg-green-400 w-[90%] h-[80%] rounded-md shadow-xl">
 									<NavLink to={feature.link}>{feature.name}</NavLink>
-								</CrossShadow>
+								</div>
 							</div>
 						);
 					})}
