@@ -2,6 +2,13 @@ import React from "react";
 import { crossH } from "../tools/image";
 import CrossShadow from "../components/CrossShadow";
 import { NavLink } from "react-router-dom";
+import {
+	book,
+	calculator,
+	chatbubbles,
+	checkbox,
+	newspaper,
+} from "../tools/icons";
 
 export default function Home() {
 	return (
@@ -27,11 +34,16 @@ export default function Home() {
 						return (
 							<div
 								key={idx}
-								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative text-white  text-xl lg:text-2xl font-semibold border-2 border-gray-700 min-w-36 bg-white ${
+								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative text-white text-sm md:text-xl lg:text-2xl font-semibold border-2 border-gray-700 min-w-36 bg-white whitespace-nowrap ${
 									idx == 4 && "col-span-2"
 								}`}
 							>
-								<div className="flex justify-center items-center  bg-green-400 w-[90%] h-[80%] rounded-md shadow-xl">
+								<div className="flex justify-evenly items-center  bg-green-400 w-[90%] h-[80%] rounded-md shadow-xl relative md:p-4">
+									<img
+										src={feature.icon}
+										alt=""
+										className="w-8 md:w-10 bg-white p-2 rounded-md shadow"
+									/>
 									<NavLink to={feature.link}>{feature.name}</NavLink>
 								</div>
 							</div>
@@ -44,9 +56,9 @@ export default function Home() {
 }
 
 const Features = [
-	{ name: "Lecture Note", link: "#", icon: "" },
-	{ name: "Chat Room", link: "#", icon: "" },
-	{ name: "CGPA Planner", link: "edu/cgpa-planner", icon: "" },
-	{ name: "E-Voting", link: "#", icon: "" },
-	{ name: "Information And Annoucement", link: "#", icon: "" },
+	{ name: "Lecture Note", link: "#", icon: book },
+	{ name: "Chat Room", link: "#", icon: chatbubbles },
+	{ name: "CGPA Planner", link: "edu/cgpa-planner", icon: calculator },
+	{ name: "E-Voting", link: "#", icon: checkbox },
+	{ name: "Information And Annoucement", link: "#", icon: newspaper },
 ];

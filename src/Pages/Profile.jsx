@@ -16,9 +16,11 @@ export default function Profile() {
 						return (
 							<div
 								key={idx}
-								className="h-14 border-2 border-gray-600 rounded-md flex items-center p-2 relative bg-white lg:w-[90%] shadow-xl"
+								className=" flex justify-center items-center h-14 border-2 border-gray-600 rounded-md p-2 relative bg-white text-white lg:w-[90%] shadow-xl"
 							>
-								<CrossShadow>{profile.name}</CrossShadow>
+								<div className="w-[98%] h-[90%] bg-green-400 p-2 flex justify-start items-center rounded-sm shadow">
+									{profile.name}
+								</div>
 							</div>
 						);
 					})}

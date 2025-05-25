@@ -35,11 +35,13 @@ export default function CgpaCalculator() {
 			)}
 			<div className="flex flex-col my-10 gap-10">
 				<section className="flex flex-col justify-center items-center gap-3">
-					<h2 className="text-4xl font-semibold mb-10 text-gray-500">
+					<h2 className="text-4xl font-semibold mb-10 text-green-400">
 						CGPA CALCULATOR
 					</h2>
-					<div className="text-6xl font-semibold">0.00</div>
-					<div className="text-xl">Total CGPA</div>
+					<div className="text-6xl font-semibold text-white p-2 rounded-md bg-green-400 shadow-md">
+						0.00
+					</div>
+					<div className="text-xl text-green-400">Total CGPA</div>
 				</section>
 				<section className="flex justify-center">
 					<div className="relative w-[90%] lg:w-[50%] aspect-video shadow-xl rounded-md bg-white">
@@ -55,7 +57,7 @@ export default function CgpaCalculator() {
 							{userLevel.map((stuLevel, idx) => {
 								return (
 									<div key={idx}>
-										<div className="h-14 flex items-center justify-end p-2 relative bg-white lg:w-[90%] border-b border-gray-500 gap-4">
+										<div className="h-14 flex items-center justify-end p-2 relative bg-white lg:w-[90%] border-b border-green-400 gap-4 text-green-400">
 											<span className="mr-auto">{stuLevel.level}</span>
 											<button
 												onClick={() => {
