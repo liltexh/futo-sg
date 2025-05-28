@@ -15,6 +15,7 @@ import "./App.css";
 import CgpaPlaner from "./components/CgpaPlaner";
 import CgpaCalculator from "./components/CgpaCalculator";
 import Edu from "./Pages/Edu";
+import Auth from "./Pages/Auth";
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route
@@ -24,6 +25,10 @@ const router = createBrowserRouter(
 			<Route
 				index
 				element={<Home />}
+			></Route>
+			<Route
+				path="/auth"
+				element={<Auth />}
 			></Route>
 			<Route
 				path="/libary"
