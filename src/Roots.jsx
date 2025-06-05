@@ -5,7 +5,7 @@ export default function Roots() {
 	return (
 		<>
 			<Outlet />
-			<nav className="fixed bottom-4 w-[90%] rounded-md shadow-xl left-1/2 transform -translate-x-1/2 excess_z bg-white">
+			<nav className="fixed bottom-4 w-[90%] lg:w-[30%] rounded-md shadow-xl left-1/2 transform -translate-x-1/2 excess_z bg-white">
 				<ul className="flex  justify-between p-2">
 					<li>
 						<NavLink to="/">

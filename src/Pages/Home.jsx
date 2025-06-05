@@ -12,6 +12,7 @@ import {
 	chatbubbles,
 	checkbox,
 	newspaper,
+	searchCircle,
 } from "../tools/icons";
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
 				setCurrentUser(user);
 			} else {
 				console.log("not verified");
-				navigate("/auth");
+				// navigate("/auth");
 			}
 		});
 		return unsubscribe;
@@ -33,16 +34,19 @@ export default function Home() {
 	return (
 		<div className="flex flex-col lg:flex-row justify-evenly h-dvh">
 			<section className="lg:flex-1/2 flex flex-col gap-10 justify-center items-center lg:mr-10">
-				<div className="relative shadow-xl w-fit rounded-md justify-self-start self-start">
-					<CrossShadow>
-						<div className="flex bg-white w-full h-10 rounded-md">
-							<button>icon</button>
-							<input
-								type="text"
-								placeholder="Search"
-							/>
-						</div>
-					</CrossShadow>
+				<div className="relative shadow-xl w-fit rounded-md justify-self-start self-start ">
+					<div className="flex bg-white border-2 border-green-400  w-full h-10 rounded-md">
+						<img
+							src={searchCircle}
+							alt="search icon"
+						/>
+
+						<input
+							type="text"
+							placeholder="Search"
+							className="outline-0 placeholder-green-400"
+						/>
+					</div>
 				</div>
 
 				<div className="w-full min-h-44 bg-white shadow-md aspect-video rounded-md"></div>
@@ -53,7 +57,7 @@ export default function Home() {
 						return (
 							<div
 								key={idx}
-								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative text-white text-sm md:text-xl lg:text-2xl font-semibold border-2 border-gray-400 min-w-36 bg-white whitespace-nowrap ${
+								className={`flex justify-center items-center rounded-md h-20 lg:h-24 shadow-xl relative text-white text-sm md:text-xl font-semibold border-2 border-gray-400 min-w-36 bg-white whitespace-nowrap ${
 									idx == 4 && "col-span-2"
 								}`}
 							>

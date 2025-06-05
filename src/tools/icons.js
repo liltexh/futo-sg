@@ -8,6 +8,7 @@ import library from "../assets/icons/library-outline.svg";
 import profile from "../assets/icons/person-outline.svg";
 import eye from "../assets/icons/eye.svg";
 import eyeCrossed from "../assets/icons/eye-crossed.svg";
+import searchCircle from "../assets/icons/search-circle-outline.svg";
 
 export {
 	book,
@@ -20,4 +21,5 @@ export {
 	profile,
 	eye,
 	eyeCrossed,
+	searchCircle,
 };
